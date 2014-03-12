@@ -10,14 +10,13 @@ The following line:
 	<?php
 	require_once('rest.inc.php');
 	
-	$URL = "https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde";
-	
 	// CALL
-	$result = RestCurl::get($URL);
+	$result = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
+
+$result will contain something like:
+
 	print_r($result);
-
-Will print something like:
-
+	
     Array
     (
         [status] => 200
@@ -33,25 +32,29 @@ Will print something like:
     Access-Control-Allow-Origin: *
     Transfer-Encoding: chunked
     Content-Type: application/json;charset=utf-8
-        [body] => Array
+        [data] => Array
             (
                 [0] => stdClass Object
                     (
                         [_id] => stdClass Object
                             (
-                                [$oid] => 52476ad1e4b0878e14b211f3
+                                [$oid] => 52476ad1e4b08781144211f3
                             )
 
-                        [email] => admin@abc.com
-                        [password] => changeme
-                        [admin] => 1
-                        [firstName] => Admin   
-                        [lastName] => User
+                        [city] => Barcelona
+                        [date] => 2014-03-10
+                        [guest] => Jordi Moraleda
                     )
 
             )
 
     )
+
+The result:
+
+* $result['status'] is the HTTP status code.
+* $result['header'] is a string with the response headers
+* $result['data'] is the JSON response parsed into an array
 
 ##CRUD Methods
 RestCurl supports the typical CRUD methods (GET, POST, PUT, DELETE) as follows:
@@ -63,8 +66,9 @@ RestCurl supports the typical CRUD methods (GET, POST, PUT, DELETE) as follows:
 
 The second parameter is **optional**. 
 
-* In GET requests, the $array properties will be appended to the URL
-	* array('key' => 'value') will turn into http://example.net/**?key=value**
+* In GET requests, $keyValueParams will be appended to the URL
+	* array('key' => 'value') will turn into http://example.net/?key=value
+	* If GET parameters are detected on the URL, nothing is done
 * For the rest, the contents of $array will be stringified to **JSON** and passed as the request **body**. 
 
 ## Other HTTP methods

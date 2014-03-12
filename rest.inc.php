@@ -45,7 +45,7 @@ Class RestCurl {
     $header = trim(substr($response, 0, $info['header_size']));
     $body = substr($response, $info['header_size']);
      
-    return array('status' => $info['http_code'], 'header' => $header, 'body' => json_decode($body));
+    return array('status' => $info['http_code'], 'header' => $header, 'data' => json_decode($body));
   }
 
   public static function get($url, $obj = array()) {
