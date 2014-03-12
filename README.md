@@ -2,7 +2,7 @@ PHP Rest CURL
 =========
 PHP Rest CURL is a wrapper class for PHP, simplifying the typical CRUD requests to the extreme.
 
-All the data passed to the server is encoded with / decoded from JSON. 
+All the data passed to the server is encoded to JSON and decoded from JSON. 
 
 ## Getting Started
 Using it is as simple as can be.
