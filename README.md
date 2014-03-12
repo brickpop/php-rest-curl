@@ -59,17 +59,24 @@ The result:
 ##CRUD Methods
 RestCurl supports the typical CRUD methods (GET, POST, PUT, DELETE) as follows:
 
-	$result = RestCurl::get($URL, $keyValueParams);
-	$result = RestCurl::post($URL, $array);
-	$result = RestCurl::put($URL, $array);
-	$result = RestCurl::delete($URL, $array);	
+	// GET
+	$result = RestCurl::get($URL, array('id' => 12345678));
+	
+	// POST
+	$result = RestCurl::post($URL, array('name' => 'RestCurl'));
+	
+	// PUT
+	$result = RestCurl::put($URL, array('$set' => array('version' => 1)));
+	
+	// DELETE
+	$result = RestCurl::delete($URL, array());	
 
 The second parameter is **optional**. 
 
 * In GET requests, $keyValueParams will be appended to the URL
-	* array('key' => 'value') will turn into http://example.net/?key=value
-	* If GET parameters are detected on the URL, nothing is done
-* For the rest, the contents of $array will be stringified to **JSON** and passed as the request **body**. 
+	* array('id' => '12345678') will turn into http://example.net/?id=12345678
+	* If GET parameters are already present in the URL, nothing will be appended
+* For the rest of methods, the contents of the second parameter will be stringified as **JSON** and passed as the request **body**. 
 
 ## Other HTTP methods
 If you want to use methods besides GET, POST, PUT, DELETE, you can achieve that by just calling:
