@@ -89,3 +89,17 @@ If you want to use methods besides GET, POST, PUT, DELETE, you can achieve that 
 
 	$result = RestCurl::exec('OPTIONS', $URL, array('foo' => 'bar'));
 
+## Dependencies
+To get PHP Rest Curl working, you will need to install the corresponding package for your platform. 
+
+####Debian/Ubuntu
+
+	sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
+	
+####Red Hat/CentOS
+
+	yum install php-common php-curl
+
+####Mac OS X (development)
+
+* Just use [MAMP](http://www.mamp.info/en/). Everything is bundled inside.
