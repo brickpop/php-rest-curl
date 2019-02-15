@@ -32,10 +32,10 @@ $result = RestCurl::put($URL, array('$set' => array('version' => 1)));
 $result = RestCurl::delete($URL, array());	
 ```
 
-The second parameter is **optional**. 
+The second parameter is an **optional** key/value array. 
 
-* In GET requests, $keyValueParams will be appended to the URL
-	* `array('id' => '12345678')` will turn into http://example.net/?id=12345678
+* In GET requests it will be translated into query string parameters
+	* `array('id' => '12345678')` will turn the URL into `<url-prefix>/?id=12345678`
 	* If GET parameters are already present in the URL, nothing will be appended
 * For the rest of methods, the contents of the second parameter will be stringified as **JSON** and passed as the request **body**. 
 
