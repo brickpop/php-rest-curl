@@ -13,7 +13,7 @@ Using it is as simple as can be.
 	// CALL
 	$result = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
 
-##CRUD Methods
+## CRUD Methods
 RestCurl supports the typical CRUD methods (GET, POST, PUT, DELETE) as follows:
 
 	// GET
