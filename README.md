@@ -34,7 +34,7 @@ $result = RestCurl::delete($URL, array());
 
 The second parameter is an **optional** key/value array. 
 
-* In GET requests it will be translated into query string parameters
+* In GET requests its contents will be translated into query string parameters
 	* `array('id' => '12345678')` will turn the URL into `<url-prefix>/?id=12345678`
 	* If GET parameters are already present in the URL, nothing will be appended
 * For the rest of methods, the contents of the second parameter will be stringified as **JSON** and passed as the request **body**. 
