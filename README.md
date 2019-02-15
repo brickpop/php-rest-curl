@@ -7,42 +7,49 @@ All the data passed to the server is encoded to JSON and decoded from JSON.
 ## Getting Started
 Using it is as simple as can be.
 
-	<?php
-	require_once('rest.inc.php');
-	
-	// CALL
-	$result = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
+```php
+<?php
+require_once('rest.inc.php');
+
+// CALL
+$result = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
+```
 
 ## CRUD Methods
 RestCurl supports the typical CRUD methods (GET, POST, PUT, DELETE) as follows:
 
-	// GET
-	$result = RestCurl::get($URL, array('id' => 12345678));
-	
-	// POST
-	$result = RestCurl::post($URL, array('name' => 'RestCurl'));
-	
-	// PUT
-	$result = RestCurl::put($URL, array('$set' => array('version' => 1)));
-	
-	// DELETE
-	$result = RestCurl::delete($URL, array());	
+```php
+// GET
+$result = RestCurl::get($URL, array('id' => 12345678));
+
+// POST
+$result = RestCurl::post($URL, array('name' => 'RestCurl'));
+
+// PUT
+$result = RestCurl::put($URL, array('$set' => array('version' => 1)));
+
+// DELETE
+$result = RestCurl::delete($URL, array());	
+```
 
 The second parameter is **optional**. 
 
 * In GET requests, $keyValueParams will be appended to the URL
-	* array('id' => '12345678') will turn into http://example.net/?id=12345678
+	* `array('id' => '12345678')` will turn into http://example.net/?id=12345678
 	* If GET parameters are already present in the URL, nothing will be appended
 * For the rest of methods, the contents of the second parameter will be stringified as **JSON** and passed as the request **body**. 
 
 ## Return value
 The previous example:
 
-	$res = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
+```php
+$res = RestCurl::get("https://api.mongolab.com/api/1/databases/my-db/collections/bookings?apiKey=0123456789abcde");
+```
 
 Will assign to $res something like:
 
-	print_r($res);
+```php
+print_r($res);
 	
     Array
     (
@@ -77,29 +84,32 @@ Will assign to $res something like:
     Content-Type: application/json;charset=utf-8
 
     )
+```
 
 In the array: 
 
-* $res['status'] is the HTTP status code.
-* $res['data'] is the JSON response parsed into an array
-* $res['header'] is a string with the response headers
+* `$res['status']` is the HTTP status code.
+* `$res['data']` is the JSON response parsed into an array
+* `$res['header']` is a string with the response headers
 
 ## Other HTTP methods
 If you want to use methods besides GET, POST, PUT, DELETE, you can achieve that by just calling:
 
-	$result = RestCurl::exec('OPTIONS', $URL, array('foo' => 'bar'));
+```php
+$result = RestCurl::exec('OPTIONS', $URL, array('foo' => 'bar'));
+```
 
 ## Dependencies
 To get PHP Rest Curl working, you will need to install the corresponding package for your platform. 
 
-####Debian/Ubuntu
+#### Debian/Ubuntu
 
 	sudo apt-get install curl libcurl3 libcurl3-dev php5-curl
 	
-####Red Hat/CentOS
+#### Red Hat/CentOS
 
 	yum install php-common php-curl
 
-####Mac OS X (development)
+#### Mac OS X (development)
 
 * Just use [MAMP](http://www.mamp.info/en/). Everything is bundled inside.
